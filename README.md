@@ -5,6 +5,7 @@ Inteligência Artificial Para Redução Da Evasão Escolar
 - [IAPREE](#iapree)
 	- [Sobre](#sobre)
 	- [Instalação](#instalação)
+	- [Desenvolvimento](#desenvolvimento)
 	- [Equipe](#equipe)
 
 ## Sobre
@@ -23,6 +24,14 @@ E depois disso instale todas as depedências:
 ```
 pip install -r requirements.txt
 ```
+
+## Desenvolvimento
+Antes de começar a desenvolver termine a instalação a cima.
+Algumas coisas para lembrar:
+
+1. Sempre que adicionar uma dependência atualize o **requirements.txt**, para isso é bem fácil. Só usar:
+   ```pip freeze > requirements.txt```
+2. Caso criar um novo pacote no src lembre de adicionar um arquivo **__init__.py**, para que ele reconheça normalmente
 
 ## Equipe
 
