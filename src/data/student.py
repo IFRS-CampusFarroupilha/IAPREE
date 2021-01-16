@@ -4,19 +4,18 @@ import pandas as pd
 
 class studentDataset(Dataset):
 
-	def __init__(self):
-		super().__init__({
-			"author":"Me",
-			"yearReleased":"2020",
-			"source":"Vozes da minha cabeça",
-			"description":"teste"
-		})
+	information = {
+		"title": "Open University Learning Analytics Dataset",
+		"author": "The Open University",
+		"yearReleased":"2015",
+		"source":"https://analyse.kmi.open.ac.uk/open_dataset",
+		"description":"Contains data about courses, students and their interactions with Virtual Learning Environment (VLE) for seven selected courses (called modules)"
+	}
 
-		self.__requestDataset()
+	@staticmethod
+	def getDataset():
 
-	def getDataset(self):
-
-		xTrain = self.dataset
+		xTrain = studentDataset.__requestDataset()
 		
 		xTest = xTrain[int(len(xTrain)*TRAIN_PORCENTAGE)+1:len(xTrain)]
 		xTrain = xTrain[0:int(len(xTrain)*TRAIN_PORCENTAGE)]
@@ -32,5 +31,6 @@ class studentDataset(Dataset):
 
 		return (xTrain, yTrain, xTest, yTest)
 
-	def __requestDataset(self):
-		self.dataset = pd.read_csv(PROJECT_ROOT+"/datasets/studentInfo.csv")
+	@staticmethod
+	def __requestDataset():
+		return pd.read_csv(PROJECT_ROOT+"/datasets/studentInfo.csv")
