@@ -8,7 +8,7 @@ def main():
 	xTrain, yTrain, xTest, yTest = dataset.getDataset()
 
 
-	print(xTrain)
+	print(xTrain, yTrain, xTest, yTest)
 
 if __name__ == "__main__":
 	main()
