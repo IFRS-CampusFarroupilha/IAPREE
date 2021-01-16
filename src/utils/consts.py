@@ -3,4 +3,7 @@ Um conjunto de arquivos para salvar constantes
 
 '''
 
-PI = 3.14
+import os
+
+TRAIN_PORCENTAGE = .95
+PROJECT_ROOT = "/".join(os.path.dirname(os.path.abspath(__file__)).split("/")[:-2])
