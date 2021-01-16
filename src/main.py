@@ -1,10 +1,14 @@
-from data.student import getDataset
+from data.student import studentDataset
 import colorama
 
 def main():
 	colorama.init()
 
-	print(colorama.Fore.BLUE + getDataset())
+	dataset = studentDataset()
+	xTrain, yTrain, xTest, yTest = dataset.getDataset()
+
+
+	print(xTrain)
 
 if __name__ == "__main__":
 	main()
