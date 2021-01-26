@@ -11,9 +11,10 @@ class DenseModule(Module):
 	}
 
 	@staticmethod
-	def getModule():
+	def getModule(multiplier=10):
 		l = tf.keras.layers
+
 		return [
-			l.Dense(512, activation="relu"),
-			l.Dense(256, activation="relu")
+			l.Dense(2**multiplier, activation="relu"),
+			l.Dense(2**multiplier-1, activation="relu")
 		]

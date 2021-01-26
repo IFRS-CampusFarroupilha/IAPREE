@@ -1,6 +1,7 @@
 from data.student import studentDataset
 from utils.functions import inject
-from modules.dense import DenseModule
+from modules import dense, dropout
+import tensorflow as tf
 import colorama
 
 def main():
@@ -8,11 +9,23 @@ def main():
 
 	xTrain, yTrain, xTest, yTest = studentDataset.getDataset()
 
-	ia = ["dense", "dense"]
+	layers = studentDataset.getStart()
+	inject(layers, dense.DenseModule.getModule(6))
+	inject(layers, dropout.DropOutModule.getModule())
+	inject(layers, studentDataset.getEnd())
 
-	inject(ia, DenseModule.getModule())
+	model = tf.keras.Sequential(layers)
 
-	print(xTrain, yTrain, xTest, yTest, ia)
+
+	model.compile(
+		optimizer=studentDataset.getBestOptimizer(),
+		loss=studentDataset.getBestLoss(),
+		metrics=['acc']
+	)
+
+	history = model.fit(xTrain, yTrain, epochs=100)
+
+	print(history)
 
 if __name__ == "__main__":
 	main()
