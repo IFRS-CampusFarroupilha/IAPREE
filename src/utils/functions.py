@@ -1,5 +1,5 @@
 '''
-Uma coleção de funções que podem ser uteis em algum momento
+A collection of functions
 
 '''
 

@@ -1,5 +1,5 @@
 '''
-Um conjunto de arquivos para salvar constantes
+A collection of constants
 
 '''
 
