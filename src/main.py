@@ -1,4 +1,4 @@
-from data.student import studentDataset
+from data.publicSheet import publicDataset
 from utils.functions import inject
 from modules import dense, dropout
 from callbacks.ReachAccuracyStop import ReachAccuracyStop
@@ -8,20 +8,22 @@ import colorama
 def main():
 	colorama.init()
 
-	xTrain, yTrain, xTest, yTest = studentDataset.getDataset()
+	dataset = publicDataset
+
+	xTrain, yTrain, xTest, yTest = dataset.getDataset()
 
 	reachAccuracyStop = ReachAccuracyStop(0.85)
 
-	layers = studentDataset.getStart()
+	layers = dataset.getStart()
 	inject(layers, dense.DenseModule.getModule(6))
 	inject(layers, dropout.DropOutModule.getModule())
-	inject(layers, studentDataset.getEnd())
+	inject(layers, dataset.getEnd())
 
 	model = tf.keras.Sequential(layers)
 
 	model.compile(
-		optimizer=studentDataset.getBestOptimizer(),
-		loss=studentDataset.getBestLoss(),
+		optimizer=dataset.getBestOptimizer(),
+		loss=dataset.getBestLoss(),
 		metrics=['acc']
 	)
 
